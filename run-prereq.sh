@@ -155,50 +155,6 @@ fi
 
 
 ################################################################################
-# CUDA
-################################################################################
-
-if [[ "${DV_GPU_BUILD}" = "1" ]]; then
-  if [[ "${DV_INSTALL_GPU_DRIVERS}" = "1" ]]; then
-    if [[ "$(lsb_release -d)" != *Ubuntu*16.*.* ]]; then
-      echo "CUDA installation only configured for Ubuntu 16"
-      exit 1
-    fi
-
-    # from https://cloud.google.com/compute/docs/gpus/add-gpus
-    echo "Checking for CUDA..."
-    if ! dpkg-query -W cuda-10-0; then
-      echo "Installing CUDA..."
-      CUDA_DEB="cuda-repo-ubuntu1604_10.0.130-1_amd64.deb"
-      curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_DEB}
-      sudo -H apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
-      sudo -H dpkg -i "./${CUDA_DEB}"
-      sudo -H apt-get -qq -y update > /dev/null
-      sudo -H apt-get -qq -y install cuda-10-0 > /dev/null
-    fi
-    echo "Checking for CUDNN..."
-    if [[ ! -e /usr/local/cuda-10.0/include/cudnn.h ]]; then
-      echo "Installing CUDNN..."
-      CUDNN_TAR_FILE="cudnn-10.0-linux-x64-v7.4.2.24.tgz"
-      wget -q https://developer.download.nvidia.com/compute/redist/cudnn/v7.4.2/${CUDNN_TAR_FILE}
-      tar -xzvf ${CUDNN_TAR_FILE}
-      sudo cp -P cuda/include/cudnn.h /usr/local/cuda-10.0/include
-      sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/
-      sudo chmod a+r /usr/local/cuda-10.0/lib64/libcudnn*
-      sudo ldconfig
-    fi
-
-    # Tensorflow says to do this.
-    sudo -H apt-get -qq -y install libcupti-dev > /dev/null
-  fi
-
-  # If we are doing a gpu-build, nvidia-smi should be install. Run it so we
-  # can see what gpu is installed.
-  nvidia-smi || :
-fi
-
-
-################################################################################
 # Misc dependencies
 ################################################################################
 

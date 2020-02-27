@@ -34,7 +34,7 @@
 # will skip the installation of TensorFlow.
 export DV_USE_PREINSTALLED_TF="${DV_USE_PREINSTALLED_TF:-0}"
 
-export TF_NEED_GCP=1
+export TF_NEED_GCP=0
 
 export CUDNN_INSTALL_PATH="/usr/lib/x86_64-linux-gnu"
 
@@ -68,11 +68,11 @@ export DV_TF_NIGHTLY_BUILD="${DV_TF_NIGHTLY_BUILD:-0}"
 if [[ "${DV_TF_NIGHTLY_BUILD}" = "1" ]]; then
   export DV_CPP_TENSORFLOW_TAG="master"
 else
-  export DV_CPP_TENSORFLOW_TAG="r1.13"
+  export DV_CPP_TENSORFLOW_TAG="r1.12"
 fi
-export DV_GCP_OPTIMIZED_TF_WHL_VERSION="1.13.1"
-export DV_TENSORFLOW_STANDARD_GPU_WHL_VERSION="1.13.1"
-export DV_TENSORFLOW_STANDARD_CPU_WHL_VERSION="1.13.1"
+export DV_GCP_OPTIMIZED_TF_WHL_VERSION="1.12.0"
+export DV_TENSORFLOW_STANDARD_GPU_WHL_VERSION="1.12.0"
+export DV_TENSORFLOW_STANDARD_CPU_WHL_VERSION="1.12.0"
 
 # Set this to 1 to use DeepVariant with GPUs. Set it to an already existing
 # value in the environment (allowing command line control of the build),
@@ -87,7 +87,7 @@ export DV_GPU_BUILD="${DV_GPU_BUILD:-0}"
 # DeepVariant's call_variants step by >3x. This is called the GCP (Google Cloud
 # Platform) optimized wheel because all GCP instances have at least Sandy Bridge
 # or better chipsets, so this wheel should run anywhere on GCP.
-export DV_USE_GCP_OPTIMIZED_TF_WHL="${DV_USE_GCP_OPTIMIZED_TF_WHL:-1}"
+export DV_USE_GCP_OPTIMIZED_TF_WHL=0
 export GCP_OPTIMIZED_TF_WHL_FILENAME="tensorflow-${DV_GCP_OPTIMIZED_TF_WHL_VERSION}.deepvariant_gcp-cp27-none-linux_x86_64.whl"
 export GCP_OPTIMIZED_TF_WHL_PATH="${DV_PACKAGE_BUCKET_PATH}/tensorflow"
 export GCP_OPTIMIZED_TF_WHL_CURL_PATH="${DV_PACKAGE_CURL_PATH}/tensorflow"

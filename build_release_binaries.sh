@@ -101,6 +101,7 @@ bazel build -c opt \
   --noshow_loading_progress \
   --show_result=0 \
   --noshow_progress \
+  --incompatible_package_name_is_a_function=false \
   ${DV_COPT_FLAGS} \
   --build_python_zip \
   :binaries
@@ -110,6 +111,7 @@ bazel build  -c opt \
   --noshow_loading_progress \
   --show_result=0 \
   --noshow_progress \
+  --incompatible_package_name_is_a_function=false \
   :licenses_zip
 
 # Bazel understandably doesn't like it when its output files are edited, so
