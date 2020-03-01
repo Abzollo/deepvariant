@@ -36,8 +36,8 @@ export DV_USE_PREINSTALLED_TF="${DV_USE_PREINSTALLED_TF:-0}"
 
 export TF_CUDA_CLANG=0
 export TF_ENABLE_XLA=0
-export TF_NEED_CUDA=0
-export TF_NEED_GCP=1
+export TF_NEED_CUDA=1
+export TF_NEED_GCP=0
 export TF_NEED_GDR=0
 export TF_NEED_HDFS=0
 export TF_NEED_JEMALLOC=0
@@ -103,7 +103,7 @@ export DV_GPU_BUILD="${DV_GPU_BUILD:-0}"
 # DeepVariant's call_variants step by >3x. This is called the GCP (Google Cloud
 # Platform) optimized wheel because all GCP instances have at least Sandy Bridge
 # or better chipsets, so this wheel should run anywhere on GCP.
-export DV_USE_GCP_OPTIMIZED_TF_WHL="${DV_USE_GCP_OPTIMIZED_TF_WHL:-1}"
+export DV_USE_GCP_OPTIMIZED_TF_WHL=0
 export GCP_OPTIMIZED_TF_WHL_FILENAME="tensorflow-${DV_GCP_OPTIMIZED_TF_WHL_VERSION}.deepvariant_gcp-cp27-none-linux_x86_64.whl"
 export GCP_OPTIMIZED_TF_WHL_PATH="${DV_PACKAGE_BUCKET_PATH}/tensorflow"
 export GCP_OPTIMIZED_TF_WHL_CURL_PATH="${DV_PACKAGE_CURL_PATH}/tensorflow"

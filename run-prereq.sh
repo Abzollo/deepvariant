@@ -188,7 +188,7 @@ if [[ "${DV_GPU_BUILD}" = "1" ]]; then
 
   # If we are doing a gpu-build, nvidia-smi should be install. Run it so we
   # can see what gpu is installed.
-  nvidia-smi || :
+  # nvidia-smi || :
 fi
 
 
