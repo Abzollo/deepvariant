@@ -4,7 +4,7 @@ docker run \
     -v /tmp/docker2singularity:/output \
     --privileged -t --rm \
     quay.io/singularity/docker2singularity \
-    deepvariant_gpu:latest
+    ${1:-deepvariant_gpu:latest}
 
-# output will be in /tmp/docker2singularity
-
+mkdir -p singularity_images
+mv /tmp/docker2singularity/* singularity_images
